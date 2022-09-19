@@ -59,6 +59,14 @@ function onStart(event) {
   timer.start();
 }
 
+//-----часики
+function clock({ days, hours, minutes, seconds }) {
+  daysRef.textContent = addLeadingZero(days);
+  hoursRef.textContent = addLeadingZero(hours);
+  minutesRef.textContent = addLeadingZero(minutes);
+  secondsRef.textContent = addLeadingZero(seconds);
+}
+
 // функція таймер------------------------------------------
 const timer = {
   intervalId: null,
@@ -81,12 +89,10 @@ const timer = {
       // підтягуємо годинник
       console.log('deltaTime :', deltaTime);
       const { days, hours, minutes, seconds } = convertMs(deltaTime);
-      daysRef.textContent = convertMs(deltaTime).days;
-      hoursRef.textContent = convertMs(deltaTime).hours;
-      minutesRef.textContent = convertMs(deltaTime).minutes;
-      secondsRef.textContent = convertMs(deltaTime).seconds;
 
       console.log(`${days}:${hours}:${minutes}:${seconds}`);
+      const timer = convertMs(deltaTime);
+      clock(timer);
     }, 1000);
   },
 };
